@@ -6,7 +6,12 @@ fn main() -> Result<()> {
     let args = Args::parse();
     match args.cmd {
         SubCommand::Csv(opts) => {
-            process_csv(&opts.input, &opts.output)?;
+            let output = if let Some(output) = opts.output {
+                output.clone()
+            } else {
+                format!("output.{}", opts.format)
+            };
+            process_csv(&opts.input, output, opts.format)?;
         }
     }
     Ok(())
