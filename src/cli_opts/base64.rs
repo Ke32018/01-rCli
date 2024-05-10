@@ -6,9 +6,9 @@ use super::verify_file;
 
 #[derive(Debug, Parser)]
 pub enum Base64SubCommand {
-    #[command(name = "encode", about = "Encode a string to base64")]
+    #[command(about = "Encode a string to base64")]
     Encode(Base64EncodeOpts),
-    #[command(name = "decode", about = "Decode a base64 string")]
+    #[command(about = "Decode a base64 string")]
     Decode(Base64DecodeOpts),
 }
 
