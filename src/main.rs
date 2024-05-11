@@ -1,11 +1,12 @@
-use std::fs;
-
 use anyhow::Result;
 use base64::{engine::general_purpose::URL_SAFE_NO_PAD, Engine};
 use clap::Parser;
 use rcli::*;
+use std::fs;
 
-fn main() -> Result<()> {
+#[tokio::main]
+async fn main() -> Result<()> {
+    tracing_subscriber::fmt::init();
     let args = Args::parse();
     match args.cmd {
         SubCommand::Csv(opts) => {
@@ -66,6 +67,11 @@ fn main() -> Result<()> {
                 for (k, v) in key {
                     fs::write(opts.output_path.join(k), v)?;
                 }
+            }
+        },
+        SubCommand::Http(cmd) => match cmd {
+            HttpSubCommand::Serve(opts) => {
+                process_http_serve(&opts.dir, opts.port).await?;
             }
         },
     }
