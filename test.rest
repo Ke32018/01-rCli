@@ -1,5 +1,5 @@
 ### GET static file
-GET http://localhost:8080/fixtures/ed25519.pk
+GET http://localhost:8080/src
 
 ### Test static file with Tower-http
-GET http://localhost:8080/tower/Cargo.toml
+GET http://localhost:8080/tower/fixtures/
