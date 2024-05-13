@@ -18,5 +18,7 @@ serde = { version = "1.0.201", features = ["derive"] }
 serde_json = "1.0.117"
 serde_yaml = "0.9.34"
 tokio = { version = "1.37.0", features = ["rt", "rt-multi-thread", "net", "fs", "macros"] }
+tower-http = { version = "0.5.2", features = ["fs", "compression-full", "cors", "trace"] }
 tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+jobserver = "0.1.30"
