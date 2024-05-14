@@ -73,16 +73,6 @@ impl fmt::Display for TextSignFormat {
     }
 }
 
-// impl CmdExector for TextSubCommand {
-//     async fn execute(self) -> anyhow::Result<()> {
-//         match self {
-//             TextSubCommand::Sign(opts) => opts.execute().await,
-//             TextSubCommand::Verify(opts) => opts.execute().await,
-//             TextSubCommand::Generate(opts) => opts.execute().await,
-//         }
-//     }
-// }
-
 impl CmdExector for TextSignOpts {
     async fn execute(self) -> anyhow::Result<()> {
         let mut reader = get_reader(&self.input)?;

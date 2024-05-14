@@ -20,14 +20,6 @@ pub struct HttpServeOpts {
     pub port: u16,
 }
 
-// impl CmdExector for HttpSubCommand {
-//     async fn execute(self) -> anyhow::Result<()> {
-//         match self {
-//             HttpSubCommand::Serve(opts) => opts.execute().await,
-//         }
-//     }
-// }
-
 impl CmdExector for HttpServeOpts {
     async fn execute(self) -> anyhow::Result<()> {
         process_http_serve(self.dir, self.port).await

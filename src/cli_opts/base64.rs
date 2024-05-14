@@ -69,15 +69,6 @@ impl fmt::Display for Base64Format {
     }
 }
 
-// impl CmdExector for Base64SubCommand {
-//     async fn execute(self) -> anyhow::Result<()> {
-//         match self {
-//             Base64SubCommand::Encode(opts) => opts.execute().await,
-//             Base64SubCommand::Decode(opts) => opts.execute().await,
-//         }
-//     }
-// }
-
 impl CmdExector for Base64EncodeOpts {
     async fn execute(self) -> anyhow::Result<()> {
         let mut reader = crate::get_reader(&self.input)?;
