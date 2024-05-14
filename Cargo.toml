@@ -23,3 +23,4 @@ tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
 jobserver = "0.1.30"
 zxcvbn = "2.2.2"
+enum_dispatch = "0.3.13"
