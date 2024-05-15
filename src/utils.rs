@@ -1,5 +1,6 @@
 use anyhow::Result;
-use std::{fs::File, io::Read};
+use chrono::{Duration as ChronoDuration, Utc};
+use std::{fs::File, io::Read, time::Duration};
 
 pub fn get_reader(input: &str) -> Result<Box<dyn Read>> {
     let reader: Box<dyn Read> = if input == "-" {
@@ -15,4 +16,27 @@ pub fn get_content(input: &str) -> Result<Vec<u8>> {
     let mut buf = Vec::new();
     reader.read_to_end(&mut buf)?;
     Ok(buf)
+}
+
+pub fn parse_duration(s: &str) -> Result<Duration, &'static str> {
+    let s = s.trim();
+    let now = Utc::now();
+    let duration = if let Some(value) = s.strip_suffix('m') {
+        // Minutes
+        let minutes: i64 = value.parse().map_err(|_| "invalid number of minutes")?;
+        ChronoDuration::minutes(minutes)
+    } else if let Some(value) = s.strip_suffix('h') {
+        // Hours
+        let hours: i64 = value.parse().map_err(|_| "invalid number of hours")?;
+        ChronoDuration::hours(hours)
+    } else if let Some(value) = s.strip_suffix('d') {
+        // Days
+        let days: i64 = value.parse().map_err(|_| "invalid number of days")?;
+        ChronoDuration::days(days)
+    } else {
+        return Err("invalid duration format, must end with `m`, `h`, or `d`");
+    };
+    let expiration = now + duration;
+    let exp_duration = Duration::from_secs(expiration.timestamp() as u64);
+    Ok(exp_duration)
 }

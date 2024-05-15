@@ -24,3 +24,5 @@ tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
 jobserver = "0.1.30"
 zxcvbn = "2.2.2"
 enum_dispatch = "0.3.13"
+jsonwebtoken = "9.3.0"
+chrono = "0.4.38"
