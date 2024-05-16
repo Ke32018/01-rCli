@@ -1,5 +1,5 @@
 ### GET static file
 GET http://localhost:8080/src
 
-### Test static file with Tower-http
-GET http://localhost:8080/tower/fixtures/
+### Test index
+GET http://localhost:8080/fixtures/

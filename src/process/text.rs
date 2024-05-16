@@ -64,6 +64,9 @@ impl TextVerifier for Ed25519Verifier {
 }
 
 impl Blake3 {
+    // equal to pub fn try_new<T: AsRef<[u8]>>(key: T) -> Result<Self>
+    // From<T> for U: T -> U
+    // AsRef<T> for U: U(ref) -> &T
     pub fn try_new(key: impl AsRef<[u8]>) -> Result<Self> {
         let key = key.as_ref();
         // convert &[u8] to &[u8; 32]
